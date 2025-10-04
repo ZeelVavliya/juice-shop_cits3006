@@ -125,6 +125,7 @@ import { serveCodeSnippet, checkVulnLines } from './routes/vulnCodeSnippet'
 import { orderHistory, allOrders, toggleDeliveryStatus } from './routes/orderHistory'
 import { continueCode, continueCodeFindIt, continueCodeFixIt } from './routes/continueCode'
 import { ensureFileIsPassed, handleZipFileUpload, checkUploadSize, checkFileType, handleXmlUpload, handleYamlUpload } from './routes/fileUpload'
+import { getServerInfo } from './routes/serverInfo'
 
 const app = express()
 const server = new http.Server(app)
@@ -635,6 +636,9 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/web3/nftMintListen', nftMintListener())
   app.post('/rest/web3/walletNFTVerify', walletNFTVerify())
   app.post('/rest/web3/walletExploitAddress', contractExploitListener())
+
+  /* Server Information API endpoint */
+  app.get('/rest/server/info', getServerInfo())
 
   /* B2B Order API */
   app.post('/b2b/v2/orders', b2bOrder())

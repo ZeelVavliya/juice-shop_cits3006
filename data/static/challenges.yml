@@ -6,26 +6,16 @@
   category: 'Injection'
   description: 'Exfiltrate the entire DB schema definition via SQL Injection.'
   difficulty: 3
-  hints:
-    - 'Find out where this information could come from. Then craft an attack string against an endpoint that offers an unnecessary way to filter data.'
-    - 'Find out which database system is in use and where it would usually store its schema definitions.'
-    - 'Craft a UNION SELECT attack string to join the relevant data from any such identified system table into the original result.'
-    - 'You might have to tackle some query syntax issues step-by-step, basically hopping from one error to the next.'
-    - 'As with "Order the Christmas special offer of 2014" this cannot be achieved through the application frontend.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html'
+  hints: []
+  mitigationUrl: ~
   key: dbSchemaChallenge
 -
   name: 'User Credentials'
   category: 'Injection'
   description: 'Retrieve a list of all user credentials via SQL Injection.'
   difficulty: 4
-  hints:
-    - 'Gather information on where user data is stored and how it is addressed. Then craft a corresponding UNION SELECT attack.'
-    - 'Try to find an endpoint where you can influence data being retrieved from the server.'
-    - 'Craft a UNION SELECT attack string to join data from another table into the original result.'
-    - 'You might have to tackle some query syntax issues step-by-step, basically hopping from one error to the next'
-    - 'As with "Order the Christmas special offer of 2014" and "Exfiltrate the entire DB schema definition via SQL Injection" this cannot be achieved through the application frontend.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html'
+  hints: []
+  mitigationUrl: ~
   key: unionSqlInjectionChallenge
 -
   name: 'Login Admin'
@@ -35,116 +25,44 @@
     - Good for Demos
   description: 'Log in with the administrator''s user account.'
   difficulty: 2
-  hints:
-    - 'The challenge description probably gave away what form you should attack.'
-    - 'If you happen to know the email address of the admin already, you can launch a targeted attack.'
-    - 'You might be lucky with a dedicated attack pattern even if you have no clue about the admin email address.'
-    - 'If you harvested the admin password hash, you can try to attack that instead of using SQL Injection.'
-    - 'Alternatively you can solve this challenge as a combo with the administrator credentials challenge.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html'
+  hints: []
+  mitigationUrl: ~
   key: loginAdminChallenge
-  tutorial:
-    order: 7
+  
+
 -
   name: 'Confidential Document'
   category: 'Sensitive Data Exposure'
-  tags:
-    - Good for Demos
   description: 'Access a confidential document.'
   difficulty: 1
-  hints:
-    - 'Analyze and tamper with links in the application that deliver a file directly.'
-    - 'The file you are looking for is not protected in any way. Once you found it you can also access it.'
+  hints: []
   mitigationUrl: ~
   key: directoryListingChallenge
--
-  name: 'Forgotten Sales Backup'
-  category: 'Sensitive Data Exposure'
-  tags:
-    - Contraption
-  description: 'Access a salesman''s forgotten backup file.'
-  difficulty: 4
-  hints:
-    - 'You need to trick a security mechanism into thinking that the file you want has a valid file type.'
-    - 'Analyze and tamper with links in the application that deliver a file directly.'
-    - 'The file is not directly accessible because a security mechanism prevents access to it.'
-    - 'You need to trick the security mechanism into thinking that the file has a valid file type.'
-  mitigationUrl: ~
-  key: forgottenBackupChallenge
 -
   name: 'API-only XSS'
   category: 'XSS'
   tags:
     - Danger Zone
-  description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;iframe src="javascript:alert(`xss`)"&gt;</code> without using the frontend application at all.'
+  description: 'Perform a persisted XSS attack without using the frontend application at all.'
   difficulty: 3
-  hints:
-    - 'You need to work with the server-side API directly. Try different HTTP verbs on different entities exposed through the API.'
-    - 'A matrix of known data entities and their supported HTTP verbs through the API can help you here.'
-    - 'Careless developers might have exposed API methods that the client does not even need.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html'
+  hints: []
+  mitigationUrl: ~
   key: restfulXssChallenge
-  # Removing disabledEnv to ensure this challenge works in all environments
--
-  name: 'DOM XSS'
-  category: 'XSS'
-  tags:
-    - Tutorial
-    - Good for Demos
-  description: 'Perform a <i>DOM</i> XSS attack with <code>&lt;iframe src="javascript:alert(`xss`)"&gt;</code>.'
-  difficulty: 1
-  hints:
-    - 'Look for an input field where its content appears in the HTML when its form is submitted.'
-    - 'This challenge is almost indistinguishable from "Perform a reflected XSS attack" if you do not look "under the hood" to find out what the application actually does with the user input.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html'
-  key: localXssChallenge
-  tutorial:
-    order: 2
 -
   name: 'Client-side XSS Protection'
   category: 'XSS'
-  tags:
-    - Danger Zone
-  description: 'Perform a <i>persisted</i> XSS attack with <code>&lt;iframe src="javascript:alert(`xss`)"&gt;</code> bypassing a <i>client-side</i> security mechanism.'
+  description: 'Perform a persisted XSS attack bypassing a client-side security mechanism.'
   difficulty: 3
-  hints:
-    - 'There are only some input fields in the Juice Shop forms that validate their input.'
-    - 'Even less of these fields are persisted in a way where their content is shown on another screen.'
-    - 'Bypassing client-side security can typically be done by either disabling it on the client (i.e. in the browser by manipulating the DOM tree) or by ignoring it completely and interacting with the backend instead.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html'
-  key: persistedXssUserChallenge
-  # Removing disabledEnv to ensure this challenge works in all environments
--
-  name: 'Christmas Special'
-  category: 'Injection'
-  description: 'Order the Christmas special offer of 2014.'
-  difficulty: 4
-  hints:
-    - 'Find out how the application handles unavailable products and try to find a loophole.'
-    - 'Find out how the application hides deleted products from its customers.'
-    - 'Try to craft an attack string that makes deleted products visible again.'
-    - 'You need to get the deleted product into your shopping cart and trigger the Checkout.'
-    - 'Neither of the above can be achieved through the application frontend and it might even require (half-)Blind SQL Injection.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html'
-  key: christmasSpecialChallenge
--
-  name: 'Product Tampering'
-  category: 'Broken Access Control'
-  description: 'Change the href of the link within the OWASP SSL Advanced Forensic Tool (O-Saft) product description into https://owasp.slack.com.'
-  difficulty: 3
-  hints:
-    - 'Theoretically there are three possible ways to beat this challenge: a) broken admin functionality, b) holes in RESTful API or c) possibility for SQL Injection.'
-    - 'In practice two of these three ways should turn out to be dead ends.'
-  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html'
-  key: changeProductChallenge
--
-  name: 'Retrieve Blueprint'
-  category: 'Sensitive Data Exposure'
-  description: 'Deprive the shop of earnings by downloading the blueprint for one of its products.'
-  difficulty: 5
-  hints:
-    - 'Check for products which seem like a natural fit for being based on a blueprint.'
-    - 'You might want to pay attention to the images of the identified product candidates.'
-    - 'For your inconvenience the blueprint was not misplaced into the same place like so many others forgotten files covered in this chapter.'
+  hints: []
   mitigationUrl: ~
-  key: retrieveBlueprintChallenge
+  key: persistedXssUserChallenge
+-
+  name: 'Server IP Discovery'
+  category: 'Sensitive Data Exposure'
+  tags:
+    - Good for Demos
+  description: 'Discover the server''s internal IP address by exploiting an information disclosure vulnerability.'
+  difficulty: 2
+  hints: []
+  mitigationUrl: ~
+  key: serverIpDiscoveryChallenge

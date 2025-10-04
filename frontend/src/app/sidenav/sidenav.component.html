@@ -248,20 +248,7 @@
       {{"TITLE_ABOUT" | translate}}
     </span>
   </a>
-  <a mat-list-item routerLink="/photo-wall" (click)="onToggleSidenav()" aria-label="Go to photo wall">
-    <mat-icon>camera</mat-icon>
-    <span class="menu-text truncate">
-      {{"LABEL_PHOTO_WALL" | translate}}
-    </span>
-  </a>
-  @if (isLoggedIn()) {
-    <a mat-list-item routerLink="/deluxe-membership" (click)="onToggleSidenav()" aria-label="Go to deluxe membership page">
-      <mat-icon>card_membership</mat-icon>
-      <span class="menu-text truncate">
-        {{"LABEL_DELUXE_MEMBERSHIP" | translate}}
-      </span>
-    </a>
-  }
+  <!-- Photo Wall and Deluxe Membership links removed from the navigation -->
 
   @if (scoreBoardVisible || showGitHubLink) {
     <mat-divider style="margin-bottom: 10px;"></mat-divider>
